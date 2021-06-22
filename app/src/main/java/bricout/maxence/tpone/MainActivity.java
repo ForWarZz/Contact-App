@@ -30,7 +30,7 @@ import bricout.maxence.tpone.contacts.ContactsAdapter;
 import bricout.maxence.tpone.utils.IContactClickListener;
 import bricout.maxence.tpone.utils.IContactListener;
 
-public class MainActivity extends AppCompatActivity implements IContactListener, IContactClickListener{
+public class MainActivity extends AppCompatActivity implements IContactListener, IContactClickListener {
     private static final String CONTACTS = "contacts";
 
     public static final String CONTACT = "contact";
@@ -81,8 +81,6 @@ public class MainActivity extends AppCompatActivity implements IContactListener,
         });
     }
 
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -97,6 +95,14 @@ public class MainActivity extends AppCompatActivity implements IContactListener,
         sortList();
 
         contactsAdapter.notifyItemInserted(contacts.indexOf(contact));
+    }
+
+    @Override
+    public void onContactUpdated() {
+        sortList();
+        saveContacts();
+
+        recyclerView.post(() -> contactsAdapter.notifyDataSetChanged());
     }
 
     @Override
@@ -117,13 +123,6 @@ public class MainActivity extends AppCompatActivity implements IContactListener,
     private void sortList() {
         contacts.sort(Comparator.comparing(Contact::isFavorite)
                 .thenComparing(Contact::getLastName).reversed());
-    }
-
-    public void updateContacts() {
-        sortList();
-        saveContacts();
-
-        recyclerView.post(() -> contactsAdapter.notifyDataSetChanged());
     }
 
     private void saveContacts() {

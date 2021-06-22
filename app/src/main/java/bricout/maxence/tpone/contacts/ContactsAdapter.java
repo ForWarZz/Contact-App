@@ -12,16 +12,17 @@ import java.util.List;
 import bricout.maxence.tpone.MainActivity;
 import bricout.maxence.tpone.utils.IContactClickListener;
 import bricout.maxence.tpone.R;
+import bricout.maxence.tpone.utils.IContactListener;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactViewHolder> {
     private List<Contact> contacts;
     private IContactClickListener contactClickListener;
-    private MainActivity mainActivity;
+    private IContactListener contactListener;
 
-    public ContactsAdapter(List<Contact> contacts, IContactClickListener contactClickListener, MainActivity mainActivity) {
+    public ContactsAdapter(List<Contact> contacts, IContactClickListener contactClickListener, IContactListener contactListener) {
         this.contacts = contacts;
         this.contactClickListener = contactClickListener;
-        this.mainActivity = mainActivity;
+        this.contactListener = contactListener;
     }
 
     @NonNull
@@ -30,12 +31,12 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactViewHolder> {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_contact, parent, false);
 
-        return new ContactViewHolder(view, contactClickListener);
+        return new ContactViewHolder(view, contactClickListener, contactListener);
     }
 
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int position) {
-        holder.display(contacts.get(position), mainActivity);
+        holder.display(contacts.get(position));
     }
 
     @Override

@@ -6,4 +6,5 @@ import bricout.maxence.tpone.contacts.Contact;
 
 public interface IContactListener {
     void onContactAdded(Contact contact);
+    void onContactUpdated();
 }
