@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TPone</string>
+    <string name="icon">Icon</string>
+    <string name="home_title">Travaux pratique numéro 1</string>
+    <string name="home_confirmation_button">Confirmer</string>
+    <string name="home_inputName_hint">Entrer votre prénom</string>
+    <string name="create_contact_title">Création d\'un contacte</string>
+    <string name="full_name_title">Nom et Prénom</string>
+    <string name="default_fullname">Bricout Maxence</string>
+    <string name="email_title">Email</string>
+    <string name="default_email">bricout.maxence@gmail.com</string>
+    <string name="phone_title">Numéro de téléphone</string>
+    <string name="no_phone_register">Aucun numéro de téléphone n\'est enregistré</string>
+    <string name="city_title">Ville/Village</string>
+    <string name="default_city">Paris</string>
+</resources>
