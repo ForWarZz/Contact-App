@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="bricout.maxence.tpone">
+    package="fr.forwarzz.tpone">
 
     <application
         android:allowBackup="true"
@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TPone">
 
-        <activity android:name=".CreateContactActivity" android:parentActivityName=".MainActivity" />
-        <activity android:name=".ContactInfoActivity" android:theme="@style/Theme.TPone.NoActionBar" android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity" android:launchMode="singleTop" />
-        <activity android:name=".HomeActivity">
+        <activity android:name="fr.forwarzz.tpone.CreateContactActivity" android:parentActivityName="fr.forwarzz.tpone.MainActivity" />
+        <activity android:name="fr.forwarzz.tpone.ContactInfoActivity" android:theme="@style/Theme.TPone.NoActionBar" android:parentActivityName="fr.forwarzz.tpone.MainActivity" />
+        <activity android:name="fr.forwarzz.tpone.MainActivity" android:launchMode="singleTop" />
+        <activity android:name="fr.forwarzz.tpone.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

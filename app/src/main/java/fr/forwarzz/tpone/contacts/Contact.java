@@ -1,7 +1,4 @@
-package bricout.maxence.tpone.contacts;
-
-import android.os.Parcel;
-import android.os.Parcelable;
+package fr.forwarzz.tpone.contacts;
 
 import java.io.Serializable;
 

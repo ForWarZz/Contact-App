@@ -1,4 +1,4 @@
-package bricout.maxence.tpone;
+package fr.forwarzz.tpone;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,8 +9,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import fr.forwarzz.tpone.R;
+
 public class HomeActivity extends AppCompatActivity {
-    public static final String SHARED_PREFS = "bricout.maxence.sharedPreferences";
+    public static final String SHARED_PREFS = "fr.forwarzz.sharedPreferences";
     public static final String NAME = "name";
 
     private Button confirmationButton;
@@ -21,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadData();
+        loadName();
 
         if (name.isEmpty()) {
             setContentView(R.layout.activity_home);
@@ -37,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 this.name = inputName.getText().toString();
 
-                saveData();
+                saveName();
                 switchActivity();
             });
         } else {
@@ -52,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         finish();
     }
 
-    private void saveData() {
+    private void saveName() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -60,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    private void loadData() {
+    private void loadName() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
 
         this.name = sharedPreferences.getString(NAME, "");

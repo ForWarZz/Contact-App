@@ -1,4 +1,4 @@
-package bricout.maxence.tpone.contacts;
+package fr.forwarzz.tpone.contacts;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,19 +9,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import bricout.maxence.tpone.MainActivity;
-import bricout.maxence.tpone.utils.IContactClickListener;
-import bricout.maxence.tpone.R;
-import bricout.maxence.tpone.utils.IContactListener;
+import fr.forwarzz.tpone.R;
+import fr.forwarzz.tpone.listeners.ContactListener;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactViewHolder> {
     private List<Contact> contacts;
-    private IContactClickListener contactClickListener;
-    private IContactListener contactListener;
+    private ContactListener contactListener;
 
-    public ContactsAdapter(List<Contact> contacts, IContactClickListener contactClickListener, IContactListener contactListener) {
+    public ContactsAdapter(List<Contact> contacts, ContactListener contactListener) {
         this.contacts = contacts;
-        this.contactClickListener = contactClickListener;
         this.contactListener = contactListener;
     }
 
@@ -31,7 +27,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactViewHolder> {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_contact, parent, false);
 
-        return new ContactViewHolder(view, contactClickListener, contactListener);
+        return new ContactViewHolder(view, contactListener);
     }
 
     @Override

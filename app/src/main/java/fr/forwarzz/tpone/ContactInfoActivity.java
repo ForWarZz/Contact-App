@@ -1,16 +1,12 @@
-package bricout.maxence.tpone;
+package fr.forwarzz.tpone;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,8 +15,8 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import bricout.maxence.tpone.contacts.Contact;
-import bricout.maxence.tpone.utils.IContactListener;
+import fr.forwarzz.tpone.contacts.Contact;
+import fr.forwarzz.tpone.utils.IContactListener;
 
 public class ContactInfoActivity extends AppCompatActivity {
     private TextView fullName;

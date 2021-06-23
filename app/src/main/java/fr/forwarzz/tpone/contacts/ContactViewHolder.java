@@ -1,4 +1,4 @@
-package bricout.maxence.tpone.contacts;
+package fr.forwarzz.tpone.contacts;
 
 import android.view.View;
 import android.widget.CheckBox;
@@ -7,27 +7,23 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import bricout.maxence.tpone.MainActivity;
-import bricout.maxence.tpone.R;
-import bricout.maxence.tpone.utils.IContactClickListener;
-import bricout.maxence.tpone.utils.IContactListener;
+import fr.forwarzz.tpone.R;
+import fr.forwarzz.tpone.listeners.ContactListener;
 
 public class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private ImageView avatar;
     private TextView fullName;
     private CheckBox favorite;
 
-    IContactClickListener contactClickListener;
-    IContactListener contactListener;
+    private ContactListener contactListener;
 
-    public ContactViewHolder(View itemView, IContactClickListener contactClickListener, IContactListener contactListener) {
+    public ContactViewHolder(View itemView, ContactListener contactListener) {
         super(itemView);
 
         this.avatar = itemView.findViewById(R.id.avatar);
         this.fullName = itemView.findViewById(R.id.fullName);
         this.favorite = itemView.findViewById(R.id.favoriteStar);
 
-        this.contactClickListener = contactClickListener;
         this.contactListener = contactListener;
 
         itemView.setOnClickListener(this);
@@ -38,6 +34,8 @@ public class ContactViewHolder extends RecyclerView.ViewHolder implements View.O
         this.fullName.setText(contact.getFullName());
         this.favorite.setChecked(contact.isFavorite());
 
+        // When the favorite star was clicked, update the contacts list and save
+
         this.favorite.setOnClickListener(view -> {
             contact.setFavorite(favorite.isChecked());
 
@@ -47,6 +45,6 @@ public class ContactViewHolder extends RecyclerView.ViewHolder implements View.O
 
     @Override
     public void onClick(View view) {
-        contactClickListener.onContactClick(getAdapterPosition());
+        contactListener.onContactClick(getAdapterPosition());
     }
 }

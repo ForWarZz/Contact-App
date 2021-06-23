@@ -1,8 +1,6 @@
-package bricout.maxence.tpone.utils;
+package fr.forwarzz.tpone.utils;
 
-import java.util.List;
-
-import bricout.maxence.tpone.contacts.Contact;
+import fr.forwarzz.tpone.contacts.Contact;
 
 public interface IContactListener {
     void onContactAdded(Contact contact);
