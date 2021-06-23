@@ -34,7 +34,7 @@ public class ContactViewHolder extends RecyclerView.ViewHolder implements View.O
         this.fullName.setText(contact.getFullName());
         this.favorite.setChecked(contact.isFavorite());
 
-        // When the favorite star was clicked, update the contacts list and save
+        // When the favorite star is clicked, update the contacts list and save
 
         this.favorite.setOnClickListener(view -> {
             contact.setFavorite(favorite.isChecked());

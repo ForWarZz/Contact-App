@@ -28,8 +28,12 @@ public class HomeActivity extends AppCompatActivity {
         if (name.isEmpty()) {
             setContentView(R.layout.activity_home);
 
+            // Init variables
+
             this.inputName = findViewById(R.id.inputName);
             this.confirmationButton = findViewById(R.id.confirmationButton);
+
+            // When confirmation button is clicked, save name and go to MainActivity if field isn't empty
 
             confirmationButton.setOnClickListener(view -> {
                 if (inputName.getText().toString().trim().isEmpty()) {
@@ -48,7 +52,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void switchActivity() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
 
         startActivity(intent);
         finish();

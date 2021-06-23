@@ -49,7 +49,7 @@ public class ContactListener implements IContactListener, IContactClickListener 
         mainActivity.getRecyclerView().post(() -> mainActivity.getContactsAdapter().notifyDataSetChanged());
     }
 
-    // When recycler view item was clicked
+    // When recycler view item is clicked
 
     @Override
     public void onContactClick(int position) {

@@ -39,6 +39,8 @@ public class ContactInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_info);
 
+        // Init all variables
+
         this.fullName = findViewById(R.id.fullNameInfo);
         this.email = findViewById(R.id.emailInfo);
         this.phone = findViewById(R.id.phoneInfo);
@@ -52,8 +54,12 @@ public class ContactInfoActivity extends AppCompatActivity {
         this.targetContact = (Contact) getIntent().getSerializableExtra(MainActivity.CONTACT);
         this.targetPosition = getIntent().getExtras().getInt(MainActivity.CONTACT_POSITION);
 
+        // Define custom toolbar
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Change action bar title and enable back arrow
 
         ActionBar actionBar = getSupportActionBar();
 
@@ -62,7 +68,11 @@ public class ContactInfoActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Set activity values from contact values
+
         setContactValue();
+
+        // When email button is clicked, open intent to send email
 
         sendEmailButton.setOnClickListener(view -> {
             if (isEmailValid(email.getText().toString())) {
@@ -76,6 +86,8 @@ public class ContactInfoActivity extends AppCompatActivity {
             }
         });
 
+        // When sms button is clicked, open intent to send sms
+
         sendSmsButton.setOnClickListener(view -> {
             if (isValidMobile(phone.getText().toString())) {
                 Uri uri = Uri.parse("smsto:" + phone.getText().toString());
@@ -87,6 +99,8 @@ public class ContactInfoActivity extends AppCompatActivity {
                 Toast.makeText(this, "Désolé, le numéro enregistré pour se contact est invalide.", Toast.LENGTH_LONG).show();
             }
         });
+
+        // When remove button in action bar is clicked, remove the contact
 
         removeContactButton.setOnClickListener(view -> {
             finish();

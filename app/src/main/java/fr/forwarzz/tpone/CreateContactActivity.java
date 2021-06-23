@@ -51,7 +51,7 @@ public class CreateContactActivity extends AppCompatActivity {
 
         this.confirmationButton = findViewById(R.id.addButton);
 
-        // When the confirmation button was clicked, add new contact in the list if all field isn't empty
+        // When the confirmation button is clicked, add new contact in the list if all field isn't empty
 
         confirmationButton.setOnClickListener(view -> {
             if (inputFirstName.getText().toString().isEmpty() ||
