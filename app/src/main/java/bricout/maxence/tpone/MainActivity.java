@@ -1,5 +1,6 @@
 package bricout.maxence.tpone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements IContactListener,
     private static final String CONTACTS = "contacts";
 
     public static final String CONTACT = "contact";
+    public static final String CONTACT_POSITION = "position";
 
     private RecyclerView recyclerView;
     private List<Contact> contacts;
@@ -98,6 +101,16 @@ public class MainActivity extends AppCompatActivity implements IContactListener,
     }
 
     @Override
+    public void onContactRemoved(int position) {
+        contacts.remove(position);
+
+        sortList();
+        saveContacts();
+
+        contactsAdapter.notifyItemRemoved(position);
+    }
+
+    @Override
     public void onContactUpdated() {
         sortList();
         saveContacts();
@@ -108,8 +121,10 @@ public class MainActivity extends AppCompatActivity implements IContactListener,
     @Override
     public void onContactClick(int position) {
         Intent intent = new Intent(this, ContactInfoActivity.class);
+        ContactInfoActivity.setContactListener(this);
 
         intent.putExtra(CONTACT, contacts.get(position));
+        intent.putExtra(CONTACT_POSITION, position);
 
         startActivity(intent);
     }

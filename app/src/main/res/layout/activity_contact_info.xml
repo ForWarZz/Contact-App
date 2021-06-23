@@ -8,6 +8,25 @@
     android:weightSum="3"
     tools:context=".ContactInfoActivity">
 
+<!--    <include android:id="@+id/contact_info_toolbar" layout="@layout/toolbar_contact_info" />-->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_500"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <ImageButton
+            android:id="@+id/contactRemoveIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_person_remove_24"
+            android:background="@android:color/transparent"
+            android:layout_marginEnd="30dp"
+            android:layout_gravity="end"/>
+    </androidx.appcompat.widget.Toolbar>
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package bricout.maxence.tpone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,7 +9,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import bricout.maxence.tpone.contacts.Contact;
+import bricout.maxence.tpone.utils.IContactListener;
 
 public class ContactInfoActivity extends AppCompatActivity {
     private TextView fullName;
@@ -26,6 +30,13 @@ public class ContactInfoActivity extends AppCompatActivity {
 
     private ImageView sendEmailButton;
     private ImageView sendSmsButton;
+
+    private ImageButton removeContactButton;
+
+    private Contact targetContact;
+    private int targetPosition;
+
+    private static IContactListener contactListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +51,22 @@ public class ContactInfoActivity extends AppCompatActivity {
         this.sendEmailButton = findViewById(R.id.sendEmailButton);
         this.sendSmsButton = findViewById(R.id.sendSmsButton);
 
+        this.removeContactButton = findViewById(R.id.contactRemoveIcon);
+
+        this.targetContact = (Contact) getIntent().getSerializableExtra(MainActivity.CONTACT);
+        this.targetPosition = getIntent().getExtras().getInt(MainActivity.CONTACT_POSITION);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         ActionBar actionBar = getSupportActionBar();
 
         if (actionBar != null) {
-            actionBar.setTitle("Information sur le contact");
+            actionBar.setTitle("Informations");
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        setContactValue((Contact) getIntent().getSerializableExtra(MainActivity.CONTACT));
+        setContactValue();
 
         sendEmailButton.setOnClickListener(view -> {
             if (isEmailValid(email.getText().toString())) {
@@ -57,7 +76,7 @@ public class ContactInfoActivity extends AppCompatActivity {
 
                 startActivity(intent);
             } else {
-                Toast.makeText(this, "Desolé, l'adresse email enregistrée pour se contact est invalide.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Désolé, l'adresse email enregistrée pour se contact est invalide.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -72,13 +91,19 @@ public class ContactInfoActivity extends AppCompatActivity {
                 Toast.makeText(this, "Désolé, le numéro enregistré pour se contact est invalide.", Toast.LENGTH_LONG).show();
             }
         });
+
+        removeContactButton.setOnClickListener(view -> {
+            finish();
+
+            contactListener.onContactRemoved(targetPosition);
+        });
     }
 
-    private void setContactValue(Contact contact) {
-        fullName.setText(contact.getFullName());
-        email.setText(contact.getEmail());
-        phone.setText(contact.getMobile());
-        city.setText(contact.getCity());
+    private void setContactValue() {
+        fullName.setText(targetContact.getFullName());
+        email.setText(targetContact.getEmail());
+        phone.setText(targetContact.getMobile());
+        city.setText(targetContact.getCity());
     }
 
     private boolean isEmailValid(String email) {
@@ -93,5 +118,9 @@ public class ContactInfoActivity extends AppCompatActivity {
             return phone.length() > 6 && phone.length() <= 13;
         }
         return false;
+    }
+
+    public static void setContactListener(IContactListener contactListener) {
+        ContactInfoActivity.contactListener = contactListener;
     }
 }
